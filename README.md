@@ -1,73 +1,89 @@
-# React + TypeScript + Vite
+<div align="center">
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🪐 Gravity Sandbox
 
-Currently, two official plugins are available:
+**Interactive physics gravity simulation where you spawn celestial bodies and watch them orbit, collide, and merge**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](#)
+[![React](https://img.shields.io/badge/React_19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](#)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](#)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](#)
 
-## React Compiler
+[Features](#-features) · [Getting Started](#-getting-started) · [Tech Stack](#%EF%B8%8F-tech-stack)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+</div>
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## ✨ Features
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **N-Body Gravity Simulation** — Real-time gravitational attraction between all bodies using Velocity Verlet integration for accurate, stable physics
+- **Click-to-Spawn** — Click anywhere to create a body; hold longer for more mass, drag to set initial velocity
+- **Collision & Merging** — Bodies collide and merge with momentum conservation, producing larger composite bodies
+- **Orbital Trails** — Toggle trail rendering to visualize orbital paths and gravitational slingshots
+- **Mass-Based Visuals** — Body size and color scale with mass (blue → yellow → orange → red → purple)
+- **Softened Gravity** — Softening parameter prevents numerical explosions during close encounters
+- **Pause & Reset** — Freeze the simulation to study configurations, or reset to start fresh
+- **Real-Time HUD** — Live body count and FPS counter overlay
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🚀 Getting Started
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) 18+
+- [npm](https://www.npmjs.com/)
+
+### Installation
+
+```bash
+git clone https://github.com/markksantos/gravity-sandbox.git
+cd gravity-sandbox
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Controls
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+| Action | Input |
+|--------|-------|
+| Spawn body | Click on canvas |
+| Increase mass | Hold click longer |
+| Set velocity | Click and drag |
+| Pause / Play | Pause button |
+| Toggle trails | Trails button |
+| Clear all | Reset button |
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🛠️ Tech Stack
+
+| Category | Technology |
+|----------|-----------|
+| Language | TypeScript |
+| Frontend | React 19, Vite |
+| Styling | Tailwind CSS |
+| Rendering | HTML5 Canvas |
+| Physics | Custom N-body engine (Velocity Verlet) |
+
+## 📁 Project Structure
+
 ```
+gravity-sandbox/
+├── src/
+│   ├── simulation/
+│   │   ├── physics.ts        # N-body gravity, Velocity Verlet integration, collision merging
+│   │   ├── renderer.ts       # Canvas rendering — bodies, trails, glow effects
+│   │   └── types.ts          # Body, Vector2D type definitions
+│   ├── components/
+│   │   └── Canvas.tsx         # Canvas element with mouse event bindings
+│   ├── hooks/
+│   │   └── useSimulation.ts   # Simulation loop, spawn logic, state management
+│   ├── App.tsx                # HUD, controls, and layout
+│   └── main.tsx               # Entry point
+├── index.html
+├── package.json
+├── tsconfig.json
+└── vite.config.ts
+```
+
+## 📄 License
+
+MIT License © 2025 Mark Santos
